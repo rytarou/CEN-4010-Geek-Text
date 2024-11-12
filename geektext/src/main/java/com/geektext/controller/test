@@ -1,3 +1,86 @@
 package syntax
 
-package com.geektext.<folder name>
+package com.geektext.usercreation.usercreation
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.util.ArrayList;
+import java.util.List;
+
+
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    // POST: Create a new user
+    @PostMapping("/create")
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        try {
+            User createdUser = userService.createUser(user);
+            return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // GET: Get user by username
+    @GetMapping("/username/{username}")
+    public ResponseEntity<User> getUserByUsername(@PathVariable("username") String username) {
+        User user = userService.getUserByUsername(username);
+        if (user != null) {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // GET: Get user by email
+    @GetMapping("/email/{email}")
+    public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email) {
+        User user = userService.getUserByEmail(email);
+        if (user != null) {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    // PUT: Update an existing user
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable("id") String userId, @RequestBody User userDetails) {
+        User updatedUser = userService.updateUser(userId, userDetails);
+        if (updatedUser != null) {
+            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    // Add a credit card to a user
+    @PostMapping("/{id}/credit-cards")
+    public ResponseEntity<User> addCreditCard(@PathVariable("id") String userId, @RequestBody CreditCard creditCard) {
+        User user = userService.addCreditCard(userId, creditCard);
+        return user != null ? new ResponseEntity<>(user, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    // Get all credit cards for a user
+    @GetMapping("/{id}/credit-cards")
+    public ResponseEntity<List<CreditCard>> getUserCreditCards(@PathVariable("id") String userId) {
+        List<CreditCard> creditCards = userService.getUserCreditCards(userId);
+        return creditCards != null ? new ResponseEntity<>(creditCards, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    // Delete a credit card by last four digits
+    @DeleteMapping("/{id}/credit-cards/{lastFourDigits}")
+    public ResponseEntity<User> deleteCreditCard(@PathVariable("id") String userId, @PathVariable("lastFourDigits") String lastFourDigits) {
+        User user = userService.deleteCreditCard(userId, lastFourDigits);
+        return user != null ? new ResponseEntity<>(user, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+}
+
+
