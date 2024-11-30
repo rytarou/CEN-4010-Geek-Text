@@ -3,6 +3,8 @@ package com.geektext.controller;
 import com.geektext.model.Book;
 import com.geektext.service.BookService;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +24,11 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    // POST request to create a new book
+    // POST to create a new book
     @PostMapping("/create")
     public ResponseEntity<String> createBook(@RequestBody Book book) {
         try {
-            bookService.addBook(book);  // Use bookService to save the book
+            bookService.addBook(book);  
             return new ResponseEntity<>("Book created successfully!", HttpStatus.CREATED);
         } catch (Exception e) {
         	return new ResponseEntity<>("Failed to create book", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -34,11 +36,25 @@ public class BookController {
     }
     @GetMapping("/{isbn}")
     public ResponseEntity<Book> getBookByIsbn(@PathVariable String isbn) {
-        Book book = bookService.getBookByIsbn(isbn); // Call the service to get the book
+        Book book = bookService.getBookByIsbn(isbn);
         if (book != null) {
-            return new ResponseEntity<>(book, HttpStatus.OK); // Book found
+            return new ResponseEntity<>(book, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Book not found
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    // GET to retrieve books by author
+    @GetMapping("/author/{authorId}")
+    public ResponseEntity<List<Book>> getBooksByAuthor(@PathVariable String authorId) {
+        try {
+            List<Book> books = bookService.getBooksByAuthor(authorId); 
+            if (books != null && !books.isEmpty()) {
+                return new ResponseEntity<>(books, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
