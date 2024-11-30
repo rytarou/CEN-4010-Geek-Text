@@ -1,5 +1,7 @@
-C:\Users\Caleb\Desktop\CEN 4010 group\geektext\geektext\src\main\java\com\geektext\Application.java
-C:\Users\Caleb\Desktop\CEN 4010 group\geektext\geektext\src\main\java\com\geektext\controller\WishListController.java
-C:\Users\Caleb\Desktop\CEN 4010 group\geektext\geektext\src\main\java\com\geektext\model\WishList.java
-C:\Users\Caleb\Desktop\CEN 4010 group\geektext\geektext\src\main\java\com\geektext\repository\WishListRepository.java
-C:\Users\Caleb\Desktop\CEN 4010 group\geektext\geektext\src\main\java\com\geektext\service\WishListService.java
+C:\Users\andre\OneDrive\Documents\CEN4010\repo\CEN-4010-Geek-Text\geektext\src\main\java\com\geektext\Application.java
+C:\Users\andre\OneDrive\Documents\CEN4010\repo\CEN-4010-Geek-Text\geektext\src\main\java\com\geektext\controller\BookController.java
+C:\Users\andre\OneDrive\Documents\CEN4010\repo\CEN-4010-Geek-Text\geektext\src\main\java\com\geektext\controller\DiscountRequest.java
+C:\Users\andre\OneDrive\Documents\CEN4010\repo\CEN-4010-Geek-Text\geektext\src\main\java\com\geektext\model\Author.java
+C:\Users\andre\OneDrive\Documents\CEN4010\repo\CEN-4010-Geek-Text\geektext\src\main\java\com\geektext\model\Book.java
+C:\Users\andre\OneDrive\Documents\CEN4010\repo\CEN-4010-Geek-Text\geektext\src\main\java\com\geektext\repository\BookRepository.java
+C:\Users\andre\OneDrive\Documents\CEN4010\repo\CEN-4010-Geek-Text\geektext\src\main\java\com\geektext\service\BookService.java

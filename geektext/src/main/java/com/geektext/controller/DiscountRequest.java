@@ -1,5 +1,7 @@
 package com.geektext.controller;
 
+
+
 public class DiscountRequest {
     private String publisher;
     private double discountPercent;

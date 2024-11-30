@@ -1,8 +1,16 @@
 package com.geektext.controller;
 
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.geektext.model.Book;
+import com.geektext.service.BookService;
 
 @RestController
 @RequestMapping("/books")
@@ -33,12 +41,4 @@ public class BookController {
         bookService.discountBooksByPublisher(request.getPublisher(), request.getDiscountPercent());
         return "Discount applied successfully!";
     }
-}
-
-// DTO for discount request
-class DiscountRequest {
-    private String publisher;
-    private double discountPercent;
-
-    // Getters and Setters
 }
