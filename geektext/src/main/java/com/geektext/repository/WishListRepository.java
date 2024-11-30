@@ -1,4 +1,12 @@
 package com.geektext.repository;
 
-public class WishListRepository {
+import com.geektext.model.WishList;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface WishListRepository extends MongoRepository<WishList, String>{
+
+
+
 }
