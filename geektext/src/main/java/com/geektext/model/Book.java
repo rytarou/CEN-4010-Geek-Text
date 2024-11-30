@@ -20,7 +20,6 @@ public class Book {
 
     public Book() {}
 
-    // Parameterized constructor
     public Book(String isbn, String name, String description, double price, String author,
                 String genre, String publisher, int yearPublished, int copiesSold, String biography) {
         this.isbn = isbn;
